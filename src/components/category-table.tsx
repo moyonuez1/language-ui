@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from "react";
+import { useHistory } from "react-router-dom";
 
 import {getCategoriesWLanguages, deleteCategory} from "../services/categories";
 import Modal from "./modal";
@@ -15,6 +16,7 @@ const CategoryTable: React.FC = () => {
     const [message,setMessage] = useState("Do you want to delete?");
     const [completed,setCompleted] = useState(false);
      
+    const history = useHistory();
 
     function hideModal(){
         setShowmodal(false);
@@ -24,7 +26,11 @@ const CategoryTable: React.FC = () => {
         console.log(event.target);
         setCategoryId(event.target.id);
         setShowmodal(true);
-    }      
+    }
+        
+    function showCategory(event:any){
+        history.push(`/category/${event.target.id}`);
+    }
 
     function drop(){
 
@@ -87,7 +93,8 @@ const CategoryTable: React.FC = () => {
                         <th scope="col">Id</th>
                         <th scope="col">Name</th>
                         <th scope="col">Languages Setted</th>
-                        <th scope="col"></th>                
+                        <th scope="col"></th> 
+                        <th scope="col"></th>                 
                     </tr>
                 </thead>
                 <tbody>
@@ -103,6 +110,14 @@ const CategoryTable: React.FC = () => {
                                 onClick={showModal} 
                                 id={data._id}
                                 >Delete</button>
+                            </td>
+                            <td>
+                                <button 
+                                type="button" 
+                                className="btn btn-success" 
+                                onClick={showCategory} 
+                                id={data._id}
+                                >Go</button>
                             </td>
                     </tr>
                     ))}

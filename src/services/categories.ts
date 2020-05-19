@@ -32,3 +32,13 @@ export function deleteCategory(id: string): Promise<any>{
         .catch(error => resolve({successed:false}));
     });
 }
+
+export function getLenguagesByCategory(id: string): Promise<any>{
+    return new Promise<any>(resolve=>{   
+        axios.get(`${query}/category/${id}`)
+        .then(result=>{        
+            resolve(result.data);
+        })
+        .catch(error => resolve([]));
+    });
+}
