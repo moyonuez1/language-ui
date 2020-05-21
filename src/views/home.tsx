@@ -11,8 +11,8 @@ const Home: React.FC = () => {
             <Header></Header>            
 
             <div className="container">
-                <Subheader 
-                    title="Bienvenido Ing. Uayeb"                     
+                <Subheader data-aling="center"
+                    title="Welcome Ing. Uayeb"                     
                 />
                 
             </div>
